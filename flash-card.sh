@@ -29,12 +29,18 @@ function select_db ()
 {
   local selected=$1
   local pathToRead=$FLASH_CARD_DB/$selected$EXTENSION
+  local -A askAnswer
 
   mapfile -t mappedFileToArray < $pathToRead
   dbSize=${#mappedFileToArray[@]}
   index=$(( $RANDOM % $dbSize ))
 
-  echo ${mappedFileToArray[$index]}
+  # Split string based on ':' and create an array of assotiative values
+  while IFS=':' read key value; do
+    askAnswer["$key"]="$value"
+  done <<< "${mappedFileToArray[$index]}"
+  echo ${!askAnswer[@]}
+  echo ${askAnswer[@]}
 }
 
 function flash-card ()
