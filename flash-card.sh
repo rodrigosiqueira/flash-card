@@ -1,3 +1,8 @@
+# Copyright (C) 2017 Rodrigo Siqueira  <siqueira@kuniri.org>
+#
+# This source code is licensed under the GNU general public license,
+# Version 3.  See the file COPYING for more details
+
 #!/bin/bash
 
 declare -r FLASH_CARD_DB="flash-card-db"
